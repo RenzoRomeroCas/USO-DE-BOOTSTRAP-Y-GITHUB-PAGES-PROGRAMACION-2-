@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Mundo PapuGames</title> 
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        /* Estilos personalizados */
+        body { transition: background 0.5s ease, color 0.3s ease; }
+        .btn-papu {
+            border: none;
+            padding: 8px 16px;
+            border-radius: 10px;
+            font-weight: 600;
+            color: white;
+            transition: transform .15s ease, opacity .15s ease;
+        }
+        .btn-papu:hover { transform: translateY(-2px); opacity: 0.95; }
+        .btn-light-papu { background:#0d6efd; }     /* azul */
+        .btn-dark-papu  { background:#4b5563; }     /* gris oscuro */
+        .btn-gamer-papu { background: linear-gradient(90deg,#9900ff,#00eaff); color:#001; }
+
+        #mensajeBienvenida { font-size:1.05rem; animation:fadeIn .6s; }
+        @keyframes fadeIn { from {opacity:0; transform: translateY(6px)} to {opacity:1; transform: translateY(0)} }
+
+        /* Card recomendacion centrada */
+        #juegoSugerido .card { max-width: 760px; margin: 0.75rem auto; }
+        /* Fecha fija: mantiene color aunque cambie el tema */
+         .fecha-fija {
+           color: #ffd966 !important;    /* color dorado/neón, cámbialo si quieres otro */
+           font-weight: 600;
+           text-shadow: 0 1px 0 rgba(0,0,0,0.25);
+            }
+
+    </style>
+</head>
+<body class="bg-light text-dark">
+
+    <!-- ENCABEZADO -->
+    <header class="bg-dark text-light text-center py-4">
+        <h1 id="tituloPrincipal">🎮 Mundo PapuGames</h1>
+        <p>Noticias, análisis y lanzamientos del universo gamer.</p>
+        <!-- badge de usuario (si existe) -->
+        <div id="usuarioBadge" class="mt-2"></div>
+
+        <div class="mt-3">
+            <button class="btn-papu btn-gamer-papu" onclick="cambiarTema('gamer')">🎨 Tema Gamer</button>
+            <button class="btn-papu btn-light-papu" onclick="cambiarTema('light')">🌞 Claro</button>
+            <button class="btn-papu btn-dark-papu" onclick="cambiarTema('dark')">🌙 Oscuro</button>
+        </div>
+    </header>
+
+    <!-- NAVEGACIÓN -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">PapuGames</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div id="menu" class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Noticias</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Reseñas</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Lanzamientos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Contacto</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="container my-5">
+        <!-- Registro en la parte superior -->
+        <section id="registro" class="text-center mb-5">
+            <h2>🕹️ Registro de jugador</h2>
+            <p>Personaliza tu experiencia en PapuGames:</p>
+            <div class="w-50 mx-auto">
+                <input type="text" id="nombreJugador" class="form-control my-2" placeholder="Tu nombre real">
+                <input type="text" id="aliasJugador" class="form-control my-2" placeholder="Tu alias gamer">
+                <button class="btn-papu btn-gamer-papu" onclick="registrarUsuario()">Registrar</button>
+            </div>
+            <p id="mensajeBienvenida" class="mt-3 fw-bold text-primary"></p>
+        </section>
+
+        <!-- Juegos destacados (información original restaurada) -->
+        <section>
+            <h2>🎯 Juegos destacados</h2>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="border rounded p-3 shadow-sm h-100">
+                        <h3>Left 4 Dead 2</h3>
+                        <p>
+                            <strong>Left 4 Dead 2</strong> es un videojuego cooperativo de disparos en primera persona desarrollado por Valve. 
+                            Ambientado en un mundo post-apocalíptico lleno de zombis, los jugadores deben sobrevivir en equipo a través de 
+                            distintas campañas, cada una con niveles llenos de acción, estrategia y adrenalina.
+                        </p>
+                        <p>
+                            Su modo multijugador y la gran cantidad de mods creados por la comunidad lo convierten en un clásico que 
+                            sigue siendo muy popular entre los fans del género.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 mb-4">
+                    <div class="border rounded p-3 shadow-sm h-100">
+                        <h3>Clash Royale</h3>
+                        <p>
+                            <strong>Clash Royale</strong> es un juego de estrategia en tiempo real desarrollado por Supercell. Combina 
+                            elementos de cartas coleccionables, defensa de torres y batallas en línea entre jugadores.
+                        </p>
+                        <p>
+                            El objetivo es destruir las torres enemigas utilizando tropas, hechizos y estructuras obtenidas mediante cofres 
+                            y recompensas. Con constantes actualizaciones y nuevos personajes, Clash Royale sigue siendo uno de los títulos 
+                            móviles más exitosos del mundo.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Proximo lanzamiento (restaurado) -->
+        <section class="mt-4">
+            <h2>🚀 Próximo lanzamiento</h2>
+            <div class="border rounded p-3 shadow-sm">
+                <h3>PapuGames: Rise of the Pixels</h3>
+                <p>
+                    <strong>PapuGames</strong> es un nuevo videojuego de acción y aventuras desarrollado por un grupo de estudiantes de la UNT. 
+                    El jugador deberá recorrer mundos llenos de desafíos pixelados, combinando plataformas, combates dinámicos y 
+                    toma de decisiones que influirán en la historia.
+                </p>
+                <p>
+                    Se espera su lanzamiento para mediados de 2026, disponible en PC y consolas. 
+                    Los desarrolladores prometen una experiencia única con música retro y gráficos inspirados en la era de los 16 bits.
+                </p>
+            </div>
+        </section>
+
+        <hr class="my-5">
+
+        <!-- Sección aparte: Recomendación (Juego aleatorio con descripción) -->
+        <section id="recomendacion" class="text-center mb-5">
+            <h2>🎲 Recomendador</h2>
+            <p>Presiona para obtener un juego recomendado con su mini-presentación.</p>
+            <button class="btn-papu btn-light-papu" onclick="mostrarJuegoAleatorio()">🎮 Juego aleatorio</button>
+
+            <!-- Aquí aparecerá la tarjeta con título + presentación -->
+            <div id="juegoSugerido" class="mt-4"></div>
+        </section>
+    </main>
+
+    <!-- PIE: fecha y reinicio (ahora aquí) -->
+    <footer class="bg-dark text-center text-light py-3">
+        <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
+            <div>
+                <p class="mb-2">&copy; 2025 PapuGames | Todos los derechos reservados</p>
+            </div>
+            <div class="d-flex gap-2 align-items-center">
+                <button class="btn-papu btn-dark-papu" onclick="resetearPagina()">🔄 Reiniciar página</button>
+                <button class="btn-papu btn-light-papu" onclick="mostrarFechaActual()">🕒 Mostrar fecha</button>
+                <p id="fechaActual" class="mb-0 ms-3 fecha-fija"></p>
+ 
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- JS propio -->
+    <script src="js.propio.js"></script>
+</body>
+</html>
